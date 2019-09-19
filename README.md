@@ -6,3 +6,5 @@ R-Unity is a Unity game client for Realm of the Mad God Private Servers. This pr
 - [@Devwarlt](https://github.com/Devwarlt), **LoESoft Games**
 - [@Shot](https://github.com/ShotRotMG), **Shot's Realm**
 - [@Priest](https://github.com/EpicQuackIV), **UT Reborn**
+
+[![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/)
