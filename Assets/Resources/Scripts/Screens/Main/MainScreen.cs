@@ -1,7 +1,9 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace Assets.Resources.Scripts
+namespace Assets.Resources.Scripts.Screens.Main
 {
     public class MainScreen : MonoBehaviour
     {
@@ -9,6 +11,9 @@ namespace Assets.Resources.Scripts
         public string versionTag;
 
         public string versionKey;
+
+        [Header("Buttons")]
+        public Button serverButton;
 
         private TextMeshProUGUI version;
 
@@ -20,6 +25,9 @@ namespace Assets.Resources.Scripts
         private void InitializeGameObjects()
         {
             version.text = version.text.Replace(versionKey, Application.version);
+
+            serverButton.interactable = true;
+            serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
         }
 
         private void Awake()
