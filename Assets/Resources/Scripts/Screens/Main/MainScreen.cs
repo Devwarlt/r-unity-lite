@@ -13,7 +13,11 @@ namespace Assets.Resources.Scripts.Screens.Main
         public string versionKey;
 
         [Header("Buttons")]
+        public Button playButton;
         public Button serverButton;
+        public Button quitButton;
+        public Button registerButton;
+        public Button loginButton;
 
         private TextMeshProUGUI version;
 
@@ -26,14 +30,22 @@ namespace Assets.Resources.Scripts.Screens.Main
         {
             version.text = version.text.Replace(versionKey, Application.version);
 
-            serverButton.interactable = true;
+            //playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.CharacterSelect, LoadSceneMode.Additive));
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
+            quitButton.onClick.AddListener(() => ExitGame());
+            //registerButton.onClick.AddListener(() => open register gui);
+            //loginButton.onClick.AddListener(() => open login gui);
         }
 
         private void Awake()
         {
             GetGameObjects();
             InitializeGameObjects();
+        }
+
+        private void ExitGame()
+        {
+            Application.Quit();
         }
     }
 }
