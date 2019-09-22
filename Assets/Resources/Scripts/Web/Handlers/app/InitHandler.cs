@@ -12,14 +12,14 @@ namespace Assets.Resources.Scripts.Web.Handlers.app
 
         private void Awake()
         {
-            // init = new Init();
+            init = new Init();
 
-            button.interactable = false;
+            // button.interactable = false;
             button.onClick.AddListener(() =>
             {
                 init.Configure();
 
-                // StartCoroutine(init.OnRequest());
+                init.OnRequest();
 
                 Debug.LogWarningFormat("Response from AppEngine request '{0}':\n{1}", init.GetRequest, init.OnResponse());
             });

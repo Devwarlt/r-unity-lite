@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -23,42 +24,51 @@ namespace Assets.Resources.Scripts.Web
 
         public string GetRequest => request;
 
-        private void HandleRequest(UnityWebRequest uwr)
+        private void HandleRequest(HttpWebResponse wr)
         {
-            if (uwr.isHttpError) Debug.LogErrorFormat("HTTP Error occurred along request procedure '{0}' to the AppEngine!\n Error: {1}", request, uwr.error);
-            if (uwr.isNetworkError) Debug.LogErrorFormat("Network Error occurred along request procedure '{0}' to the AppEngine!\n Error: {1}", request, uwr.error);
-
-            response = uwr.downloadHandler.text;
-
-            Debug.LogWarning(response);
+            if (wr.StatusCode != HttpStatusCode.OK)
+                Debug.LogWarning($"StatusCode is not HttpStatusCode.OK: {wr.StatusCode}");
+            
+            using (StreamReader reader = new StreamReader(wr.GetResponseStream()))
+            {
+                response = reader.ReadToEnd();
+            }
         }
 
-        private IEnumerator HandleGetRequest()
+        private void HandleGetRequest()
         {
             var wr = WebRequest.Create(FormatRequest());
             wr.Credentials = CredentialCache.DefaultCredentials;
             wr.Method = "GET";
+            HttpWebResponse wresponse = (HttpWebResponse)wr.GetResponse();
 
-            var uwr = UnityWebRequest.Get(FormatRequest());
-
-            yield return uwr.SendWebRequest();
-
-            HandleRequest(uwr);
+            HandleRequest(wresponse);
         }
 
-        private IEnumerator HandlePostRequest()
+        private void HandlePostRequest()
         {
+            var wr = (HttpWebRequest)WebRequest.Create(FormatRequest());
+            wr.Credentials = CredentialCache.DefaultCredentials;
+            wr.Method = "POST";
+
+            wr.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+            
             var form = new WWWForm();
 
             if (fields != null && fields.Count != 0)
                 foreach (var (key, value) in fields)
                     form.AddField(key, value);
 
-            var uwr = UnityWebRequest.Post(FormatRequest(), form);
+            wr.ContentLength = form.data.Length;
+            wr.ContentType = "application/x-www-form-urlencoded";
 
-            yield return uwr.SendWebRequest();
+            Stream st = wr.GetRequestStream();
+            st.Write(form.data, 0, form.data.Length);
+            st.Close();
 
-            HandleRequest(uwr);
+            HttpWebResponse wresponse = (HttpWebResponse)wr.GetResponse();
+
+            HandleRequest(wresponse);
         }
 
         private string FormatRequest()
@@ -77,12 +87,12 @@ namespace Assets.Resources.Scripts.Web
 
         public virtual string OnResponse()
         {
-            //if (string.IsNullOrEmpty(response))
-            //{
-            //    Debug.LogErrorFormat("Client received an empty response from request '{0}' to the AppEngine via {1} method and {2} protocol!",
-            //        request, method.ToString(), webServerProtocol.ToString());
-            //    return null;
-            //}
+            if (string.IsNullOrEmpty(response))
+            {
+                Debug.LogErrorFormat("Client received an empty response from request '{0}' to the AppEngine via {1} method and {2} protocol!",
+                    request, method.ToString(), webServerProtocol.ToString());
+                return null;
+            }
 
             return response;
         }
