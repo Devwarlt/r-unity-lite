@@ -1,95 +1,123 @@
-﻿using System.Collections;
+﻿using Assets.Resources.Scripts.Monitoring;
+using System;
 using System.Collections.Generic;
-using System.Net;
 using System.IO;
-using UnityEngine;
-using UnityEngine.Networking;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace Assets.Resources.Scripts.Web
 {
+    // "Web Request" references:
     // https://docs.microsoft.com/en-us/dotnet/framework/network-programming/how-to-request-data-using-the-webrequest-class
     // https://docs.microsoft.com/en-us/dotnet/framework/network-programming/how-to-send-data-using-the-webrequest-class
-    // https://stackoverflow.com/questions/46003824/sending-http-requests-in-c-sharp-with-unity
+    // https://forums.asp.net/t/2081327.aspx?Get+HttpClient+with+parameters
+    // https://stackoverflow.com/a/10679340
 
-    public abstract class GameWebRequest
+    public sealed class GameWebRequest
     {
-        protected static GameWebProtocol webServerProtocol => GameWebProtocol.http;
-        protected static string webServerIPAddress => "54.39.227.169";
-        protected static int webServerPort => 8080;
+        private static GameWebProtocol webServerProtocol => GameWebProtocol.HTTP;
+        private static string webServerIPAddress => "54.39.227.169";
+        private static int webServerPort => 8080;
 
-        protected GameWebMethod method { get; set; }
-        protected string request { get; set; }
-        protected List<(string key, string value)> fields { get; set; }
-        protected string response { get; set; }
+        private readonly HttpMethod method;
+        private readonly Encoding encoding;
+        private readonly GameWebMediaHeader header;
 
-        public string GetRequest => request;
+        private Dictionary<string, string> nameValueCollection;
+        private string response;
 
-        private void HandleRequest(HttpWebResponse wr)
+        public readonly string request;
+
+        public GameWebRequest(HttpMethod method, string request) : this(method, request, Encoding.UTF8, GameWebMediaHeader.ApplicationXWwwFormUrlEncoded)
         {
-            if (wr.StatusCode != HttpStatusCode.OK)
-                Debug.LogWarning($"StatusCode is not HttpStatusCode.OK: {wr.StatusCode}");
-            
-            using (StreamReader reader = new StreamReader(wr.GetResponseStream()))
-            {
-                response = reader.ReadToEnd();
-            }
         }
 
+        public GameWebRequest(HttpMethod method, string request, GameWebMediaHeader header) : this(method, request, Encoding.UTF8, header)
+        {
+        }
+
+        public GameWebRequest(HttpMethod method, string request, Encoding encoding, GameWebMediaHeader header)
+        {
+            this.method = method;
+            this.request = request;
+            this.encoding = encoding;
+            this.header = header;
+
+            if (!WebUtils.Headers.ContainsKey(header)) throw new Exception("GameWebMediaHeader not found in dictionary!");
+            if (!method.SupportedHttpMethods()) throw new Exception("HttpMethod not supported!");
+
+            nameValueCollection = new Dictionary<string, string>();
+            response = string.Empty;
+        }
+
+        public void AddQuery(string key, string value) => nameValueCollection.Add(key, value);
+
+        private string UriString(bool hasPrefix = true)
+            => $"{webServerProtocol.ToString().ToLower()}://{webServerIPAddress}:{webServerPort.ToString()}/{(hasPrefix ? request.ValidateRequestPath() : string.Empty)}";
+
+        [Obsolete]
         private void HandleGetRequest()
         {
-            var wr = WebRequest.Create(FormatRequest());
-            wr.Credentials = CredentialCache.DefaultCredentials;
-            wr.Method = "GET";
-            HttpWebResponse wresponse = (HttpWebResponse)wr.GetResponse();
-
-            HandleRequest(wresponse);
-        }
-
-        private void HandlePostRequest()
-        {
-            var wr = (HttpWebRequest)WebRequest.Create(FormatRequest());
-            wr.Credentials = CredentialCache.DefaultCredentials;
-            wr.Method = "POST";
-
-            wr.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-            
-            var form = new WWWForm();
-
-            if (fields != null && fields.Count != 0)
-                foreach (var (key, value) in fields)
-                    form.AddField(key, value);
-
-            wr.ContentLength = form.data.Length;
-            wr.ContentType = "application/x-www-form-urlencoded";
-
-            Stream st = wr.GetRequestStream();
-            st.Write(form.data, 0, form.data.Length);
-            st.Close();
-
-            HttpWebResponse wresponse = (HttpWebResponse)wr.GetResponse();
-
-            HandleRequest(wresponse);
-        }
-
-        private string FormatRequest()
-            => $"{webServerProtocol.ToString()}://{webServerIPAddress}:{webServerPort.ToString()}/{request.ValidateRequestPath()}";
-
-        public abstract void Configure();
-
-        public virtual void OnRequest()
-        {
-            switch (method)
+            using (var client = new HttpClient())
             {
-                case GameWebMethod.get: HandleGetRequest(); break;
-                case GameWebMethod.post: HandlePostRequest(); break;
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(WebUtils.Headers[header]));
+
+                var builder = new UriBuilder(UriString())
+                {
+                    Query = nameValueCollection.Count != 0 ? nameValueCollection.ToQueryStringsBuilder() : string.Empty
+                };
+                var response = client.GetAsync(builder.Uri).Result;
+
+                using (var stream = new StreamReader(response.Content.ReadAsStreamAsync().Result))
+                    this.response = stream.ReadToEnd();
             }
         }
 
-        public virtual string OnResponse()
+        private async void HandleGetRequestAsync()
+        {
+            using (var client = new HttpClient())
+                response = await client.GetStringAsync(UriString() + (nameValueCollection.Count != 0 ? nameValueCollection.ToQueryStringsBuilder() : string.Empty));
+        }
+
+        [Obsolete]
+        private void HandlePostRequest()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(UriString(false));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(WebUtils.Headers[header]));
+
+                var request = new HttpRequestMessage(HttpMethod.Post, this.request.ValidateRequestPath())
+                {
+                    Content = new StringContent(nameValueCollection.Count != 0 ? nameValueCollection.ToQueryStringsBuilder() : string.Empty, encoding, WebUtils.Headers[header])
+                };
+
+                client.SendAsync(request).ContinueWith(response => this.response = response.Result.Content.ReadAsStringAsync().Result);
+            }
+        }
+
+        private async void HandlePostRequestAsync()
+        {
+            using (var client = new HttpClient())
+                response = await client.PostAsync(UriString(), new FormUrlEncodedContent(nameValueCollection)).Result.Content.ReadAsStringAsync();
+        }
+
+        public void OnRequest()
+        {
+            Log.Write("Web Request to '{0}'...", UriString());
+
+            //if (method == HttpMethod.Get) HandleGetRequest();
+            //if (method == HttpMethod.Post) HandlePostRequest();
+            if (method == HttpMethod.Get) HandleGetRequestAsync();
+            if (method == HttpMethod.Post) HandlePostRequestAsync();
+        }
+
+        public string OnResponse()
         {
             if (string.IsNullOrEmpty(response))
             {
-                Debug.LogErrorFormat("Client received an empty response from request '{0}' to the AppEngine via {1} method and {2} protocol!",
+                Log.Error("Client received an empty response from request '{0}' to the AppEngine via {1} method and {2} protocol!",
                     request, method.ToString(), webServerProtocol.ToString());
                 return null;
             }

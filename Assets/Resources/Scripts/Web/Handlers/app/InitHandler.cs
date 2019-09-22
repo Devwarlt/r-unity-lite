@@ -1,4 +1,4 @@
-﻿using Assets.Resources.Scripts.Web.Requests.app;
+﻿using System.Net.Http;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,20 +8,18 @@ namespace Assets.Resources.Scripts.Web.Handlers.app
     {
         public Button button;
 
-        private Init init;
+        private GameWebRequest init;
 
         private void Awake()
         {
-            init = new Init();
+            init = new GameWebRequest(HttpMethod.Post, "app/init");
 
-            // button.interactable = false;
+            button.interactable = true;
             button.onClick.AddListener(() =>
             {
-                init.Configure();
-
                 init.OnRequest();
 
-                Debug.LogWarningFormat("Response from AppEngine request '{0}':\n{1}", init.GetRequest, init.OnResponse());
+                Debug.LogWarningFormat("Response from AppEngine request '{0}':\n{1}", init.request, init.OnResponse());
             });
         }
     }

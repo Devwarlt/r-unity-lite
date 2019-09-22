@@ -2,7 +2,7 @@
 {
     public enum GameWebProtocol
     {
-        http,
-        https
+        HTTP,
+        HTTPS
     }
 }

@@ -562,7 +562,7 @@ PrefabInstance:
     - target: {fileID: 3450601926677507844, guid: e1d2775ec68bbf1478e53bafdaa88169,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3450601926677507845, guid: e1d2775ec68bbf1478e53bafdaa88169,
         type: 3}
@@ -1987,11 +1987,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 3450601926677507846, guid: e1d2775ec68bbf1478e53bafdaa88169,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3450601926472540769, guid: e1d2775ec68bbf1478e53bafdaa88169,
         type: 3}
       propertyPath: m_text
@@ -2011,6 +2006,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450601926677507846, guid: e1d2775ec68bbf1478e53bafdaa88169,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1d2775ec68bbf1478e53bafdaa88169, type: 3}

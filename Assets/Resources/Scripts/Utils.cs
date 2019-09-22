@@ -5,9 +5,6 @@ namespace Assets.Resources.Scripts
 {
     public static class Utils
     {
-        public static string ValidateRequestPath(this string requestPath)
-            => requestPath.StartsWith("/") || requestPath.StartsWith("\\") ? requestPath.Substring(1) : requestPath;
-
         public static bool HasQuitSupport(this RuntimePlatform platform)
             => platform != RuntimePlatform.WebGLPlayer && !platform.OnEditor();
 
