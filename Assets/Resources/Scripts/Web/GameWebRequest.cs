@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -76,7 +77,9 @@ namespace Assets.Resources.Scripts.Web
 
         private async void HandleGetRequestAsync()
         {
-            using (var client = new HttpClient())
+            using (var client = new HttpClient(new HttpClientHandler() {
+                            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                        }))
                 response = await client.GetStringAsync(UriString() + (nameValueCollection.Count != 0 ? nameValueCollection.ToQueryStringsBuilder() : string.Empty));
         }
 
@@ -99,7 +102,9 @@ namespace Assets.Resources.Scripts.Web
 
         private async void HandlePostRequestAsync()
         {
-            using (var client = new HttpClient())
+            using (var client = new HttpClient(new HttpClientHandler() {
+                            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+                        }))
                 response = await client.PostAsync(UriString(), new FormUrlEncodedContent(nameValueCollection)).Result.Content.ReadAsStringAsync();
         }
 
