@@ -14,6 +14,7 @@ namespace Assets.Resources.Scripts.Screens.Main
 
         [Header("Buttons")]
         public Button playButton;
+
         public Button serverButton;
         public Button quitButton;
         public Button registerButton;
@@ -32,7 +33,8 @@ namespace Assets.Resources.Scripts.Screens.Main
 
             //playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.CharacterSelect, LoadSceneMode.Additive));
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
-            quitButton.onClick.AddListener(() => ExitGame());
+            quitButton.interactable = Application.platform.HasQuitSupport();
+            quitButton.onClick.AddListener(() => Application.Quit());
             //registerButton.onClick.AddListener(() => open register gui);
             //loginButton.onClick.AddListener(() => open login gui);
         }
@@ -41,11 +43,6 @@ namespace Assets.Resources.Scripts.Screens.Main
         {
             GetGameObjects();
             InitializeGameObjects();
-        }
-
-        private void ExitGame()
-        {
-            Application.Quit();
         }
     }
 }

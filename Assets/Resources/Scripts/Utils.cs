@@ -5,6 +5,12 @@ namespace Assets.Resources.Scripts
 {
     public static class Utils
     {
+        public static bool HasQuitSupport(this RuntimePlatform platform)
+            => platform != RuntimePlatform.WebGLPlayer && !platform.OnEditor();
+
+        public static bool OnEditor(this RuntimePlatform platform)
+            => platform == RuntimePlatform.LinuxEditor || platform == RuntimePlatform.OSXEditor || platform == RuntimePlatform.WindowsEditor;
+
         public static void UnloadSceneAsync(string name) => SceneManager.UnloadSceneAsync(name);
 
         public static void ChangeSceneAsync(GameScene scene, LoadSceneMode mode) => SceneManager.LoadSceneAsync(scene.ToSceneName(), mode);
