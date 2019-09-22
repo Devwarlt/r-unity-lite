@@ -9,16 +9,16 @@ namespace Assets.Resources.Scripts.Screens.Main
     {
         [Header("Version Settings")]
         public string versionTag;
-
         public string versionKey;
 
-        [Header("Buttons")]
-        public Button playButton;
-
-        public Button serverButton;
-        public Button quitButton;
-        public Button registerButton;
+        [Header("Top Buttons")]
         public Button loginButton;
+        public Button registerButton;
+
+        [Header("Bottom Buttons")]
+        public Button serverButton;
+        public Button playButton;
+        public Button quitButton;
 
         private TextMeshProUGUI version;
 
