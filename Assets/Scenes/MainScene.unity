@@ -261,6 +261,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 966723112485026373, guid: 5edf67a89f7935348b04beaf7353b6b8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 966723112485026373, guid: 5edf67a89f7935348b04beaf7353b6b8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 966723112485026373, guid: 5edf67a89f7935348b04beaf7353b6b8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 966723113294667553, guid: 5edf67a89f7935348b04beaf7353b6b8,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -285,21 +300,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Quit
-      objectReference: {fileID: 0}
-    - target: {fileID: 966723112485026373, guid: 5edf67a89f7935348b04beaf7353b6b8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 966723112485026373, guid: 5edf67a89f7935348b04beaf7353b6b8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 966723112485026373, guid: 5edf67a89f7935348b04beaf7353b6b8,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5edf67a89f7935348b04beaf7353b6b8, type: 3}
@@ -931,11 +931,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   versionTag: GameVersion
   versionKey: '{GAME_VERSION}'
-  playButton: {fileID: 1926462329}
-  serverButton: {fileID: 966723112620055017}
-  quitButton: {fileID: 311389364}
-  registerButton: {fileID: 1602552924}
   loginButton: {fileID: 618096976}
+  registerButton: {fileID: 1602552924}
+  serverButton: {fileID: 966723112620055017}
+  playButton: {fileID: 1926462329}
+  quitButton: {fileID: 311389364}
+  loginPopup: {fileID: 4803784328358636303, guid: 431459a7afcd95944a4c9db1e767d967,
+    type: 3}
+  registerPopup: {fileID: 4803784328358636303, guid: 431459a7afcd95944a4c9db1e767d967,
+    type: 3}
 --- !u!114 &1602552924 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8439243038646044639, guid: 4d42094892018f347890323a1e57b846,
@@ -1795,6 +1799,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3450601926677507846, guid: e1d2775ec68bbf1478e53bafdaa88169,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3450601926472540769, guid: e1d2775ec68bbf1478e53bafdaa88169,
         type: 3}
       propertyPath: m_text
@@ -1814,11 +1823,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3450601926677507846, guid: e1d2775ec68bbf1478e53bafdaa88169,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1d2775ec68bbf1478e53bafdaa88169, type: 3}
