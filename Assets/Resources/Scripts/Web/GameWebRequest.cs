@@ -77,9 +77,10 @@ namespace Assets.Resources.Scripts.Web
 
         private async void HandleGetRequestAsync()
         {
-            using (var client = new HttpClient(new HttpClientHandler() {
-                            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-                        }))
+            using (var client = new HttpClient(new HttpClientHandler()
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            }))
                 response = await client.GetStringAsync(UriString() + (nameValueCollection.Count != 0 ? nameValueCollection.ToQueryStringsBuilder() : string.Empty));
         }
 
@@ -102,9 +103,10 @@ namespace Assets.Resources.Scripts.Web
 
         private async void HandlePostRequestAsync()
         {
-            using (var client = new HttpClient(new HttpClientHandler() {
-                            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
-                        }))
+            using (var client = new HttpClient(new HttpClientHandler()
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            }))
                 response = await client.PostAsync(UriString(), new FormUrlEncodedContent(nameValueCollection)).Result.Content.ReadAsStringAsync();
         }
 
