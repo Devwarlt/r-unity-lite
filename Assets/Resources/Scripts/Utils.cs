@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 namespace Assets.Resources.Scripts
 {
@@ -20,5 +21,7 @@ namespace Assets.Resources.Scripts
         public static string ToSceneName(this GameScene scene) => scene.ToString() + "Scene";
 
         public static T GetComponentByTag<T>(string tag) => GameObject.FindWithTag(tag).GetComponent<T>();
+
+        public static bool IsValidEmail(string email) => Regex.IsMatch(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,})+)$", RegexOptions.IgnoreCase);
     }
 }
