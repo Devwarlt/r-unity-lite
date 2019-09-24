@@ -591,8 +591,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709acba1fa4fe8d4696962c30e756618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emailInput: {fileID: 5227175829683579290}
+  passwordInput: {fileID: 6790856751364917253}
   cancelButton: {fileID: 5746599625478810703}
-  loginButton: {fileID: 0}
+  loginButton: {fileID: 5746599627033002914}
+  responseBox: {fileID: 5794281966979646486}
 --- !u!1 &5359374880757750870
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +993,91 @@ PrefabInstance:
       propertyPath: m_Name
       value: Password Input
       objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_InputType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_RichText
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_text
+      value: Enter password...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7034759047018093772, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1095,93 +1183,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_InputType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_RichText
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_text
-      value: Enter password...
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9042f0bda7fc8fa46b0a920af2670a4c, type: 3}
+--- !u!114 &6790856751364917253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 157453928984037032}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7173987466912717412 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7034759047018093772, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
@@ -1199,6 +1214,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Email Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_text
+      value: Enter email...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7034759047018093772, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
         type: 3}
@@ -1305,43 +1355,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_text
-      value: Enter email...
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9042f0bda7fc8fa46b0a920af2670a4c, type: 3}
+--- !u!114 &5227175829683579290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1483992183096878903}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8446588048300882939 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7034759047018093772, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
@@ -1751,6 +1778,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5edf67a89f7935348b04beaf7353b6b8, type: 3}
+--- !u!114 &5746599627033002914 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 966723112485026373, guid: 5edf67a89f7935348b04beaf7353b6b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4803784329751017959}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5746599627033002915 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 966723112485026372, guid: 5edf67a89f7935348b04beaf7353b6b8,

@@ -1130,7 +1130,7 @@ MonoBehaviour:
   quitButton: {fileID: 311389364}
   loginPopup: {fileID: 4803784328358636303, guid: 431459a7afcd95944a4c9db1e767d967,
     type: 3}
-  registerPopup: {fileID: 4803784328358636303, guid: 431459a7afcd95944a4c9db1e767d967,
+  registerPopup: {fileID: 6537176817361752410, guid: 9b6d638976e63744cb09d53d97682e06,
     type: 3}
 --- !u!114 &1602552924 stripped
 MonoBehaviour:
@@ -1991,11 +1991,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 3450601926677507846, guid: e1d2775ec68bbf1478e53bafdaa88169,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3450601926472540769, guid: e1d2775ec68bbf1478e53bafdaa88169,
         type: 3}
       propertyPath: m_text
@@ -2015,6 +2010,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3450601926677507846, guid: e1d2775ec68bbf1478e53bafdaa88169,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1d2775ec68bbf1478e53bafdaa88169, type: 3}
