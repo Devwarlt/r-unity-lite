@@ -1,27 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using Assets.Resources.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Assets.Resources.Scripts;
 
 public class LoadingScreen : MonoBehaviour
 {
-	public Button skipButton;
+    public Button skipButton;
 
     private void InitializeGameObjects()
     {
         skipButton.onClick.AddListener(() => OnLoadingComplete());
     }
 
-    void Awake()
+    private void Awake()
     {
-    	InitializeGameObjects();
+        InitializeGameObjects();
     }
 
     public void OnLoadingComplete()
     {
-    	Utils.ChangeSceneAsync(GameScene.Main, LoadSceneMode.Single);
+        Utils.ChangeSceneAsync(GameScene.Main, LoadSceneMode.Single);
     }
 }
