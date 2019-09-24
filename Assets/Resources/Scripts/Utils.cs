@@ -5,6 +5,8 @@ namespace Assets.Resources.Scripts
 {
     public static class Utils
     {
+        public static string RepeatCharByAmount(char c, int amount) => new string(c, amount);
+
         public static bool HasQuitSupport(this RuntimePlatform platform)
             => platform != RuntimePlatform.WebGLPlayer && !platform.OnEditor();
 
