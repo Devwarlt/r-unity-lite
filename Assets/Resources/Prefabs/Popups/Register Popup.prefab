@@ -924,7 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   emailInput: {fileID: 6434971324435213885}
   passwordInput: {fileID: 505134570406317710}
-  confirmPassword: {fileID: 517461072261726585}
+  confirmPasswordInput: {fileID: 517461072261726585}
   cancelButton: {fileID: 6328342676650137114}
   registerButton: {fileID: 6328342677243984375}
   responseBox: {fileID: 8374674845597233936}

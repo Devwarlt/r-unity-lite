@@ -42,8 +42,6 @@ public class LoginPopup : MonoBehaviour
     		return;
     	}
 
-    	responseBox.text = "Verifying Login...";
-
     	VerifyHandler verify = new VerifyHandler(emailInput.text, passwordInput.text);
 
     	if (verify.SendRequest())
