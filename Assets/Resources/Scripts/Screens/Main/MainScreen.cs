@@ -44,13 +44,14 @@ namespace Assets.Resources.Scripts.Screens.Main
             version.text = version.text.Replace(versionKey, Application.version);
 
             //playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.CharacterSelect, LoadSceneMode.Additive));
-            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
-            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
             quitButton.interactable = Application.platform.HasQuitSupport();
             quitButton.onClick.AddListener(() => Application.Quit());
 
             loadAccount();
+            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
+            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
+            logoutButton.onClick.AddListener(() => logOut());
         }
 
         private void Awake()
@@ -61,13 +62,31 @@ namespace Assets.Resources.Scripts.Screens.Main
 
         public void loadAccount()
         {
+            var loggedIn = Account.load();
             loggedInGroup.SetActive(false);
             loggedOutGroup.SetActive(false);
+
+            if (loggedIn)
+            {
+                loggedInGroup.SetActive(true);
+                nameText.text = Account.data.guid;
+            }
+            else
+            {
+                loggedOutGroup.SetActive(true);
+            }
+        }
+
+        public void logOut()
+        {
+            Account.delete();
+            loadAccount();
         }
 
         private void OpenPopup(GameObject popup)
         {
             GameObject go = Instantiate(popup, this.transform);
+            (go.GetComponent(typeof(GOStorage)) as GOStorage).set("screen", this);
             //go.onDisable.AddListener(() => EnableButtons());
             //DisableButtons();
         }

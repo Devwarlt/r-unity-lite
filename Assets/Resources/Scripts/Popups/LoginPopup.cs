@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Assets.Resources.Scripts.Web.Handlers.app;
 using Assets.Resources.Scripts;
+using Assets.Resources.Scripts.Screens.Main;
 
 public class LoginPopup : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class LoginPopup : MonoBehaviour
 
     [Header("Response Textbox")]
     public TextMeshProUGUI responseBox;
+
+    [Header("Storage")]
+    public GOStorage goStorage;
 
     private void InitializeGameObjects()
     {
@@ -48,6 +52,8 @@ public class LoginPopup : MonoBehaviour
         {
             responseBox.text = "<color=green>Successfully logged in!";
             Account.set(emailInput.text, passwordInput.text);
+            (goStorage.get("screen") as MainScreen).loadAccount();
+            Destroy(this.gameObject);
         }
     	else
     		responseBox.text = "<color=red>Invalid Login!";
