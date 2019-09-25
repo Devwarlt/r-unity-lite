@@ -44,7 +44,7 @@ namespace Assets.Resources.Scripts.Screens.Main
         {
             version.text = version.text.Replace(versionKey, Application.version);
 
-            //playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.CharacterSelect, LoadSceneMode.Additive));
+            playButton.onClick.AddListener(() => onPlayButtonPress());
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
             quitButton.interactable = Application.platform.HasQuitSupport();
             quitButton.onClick.AddListener(() => Application.Quit());
@@ -55,6 +55,12 @@ namespace Assets.Resources.Scripts.Screens.Main
 
             Account.onAccountChange += loadAccount;
             Account.load();
+        }
+
+        private void onPlayButtonPress() {
+            PlayScreen.Init(Account.data);
+
+            Utils.ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive);
         }
 
         private void Awake()
@@ -79,6 +85,8 @@ namespace Assets.Resources.Scripts.Screens.Main
                 /* CHARLIST TO GET NAME */
 
                 nameText.text = elem.Element("Account").Element("Name").Value;
+                Account.data.Setup(elem);
+                Account.save();
             }
             else
             {

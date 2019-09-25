@@ -34,6 +34,7 @@ public static class Account
             FileStream stream = new FileStream(location, FileMode.Open);
 
             data = formatter.Deserialize(stream) as AccountData;
+            Debug.Log(data.Fame);
         }
         else
         {
@@ -70,9 +71,25 @@ public class AccountData
     public string guid;
     public string password;
 
+    public string Name;
+    public int AccountID;
+    public int NextCharSlotPrice;
+    public int Fame;
+    public int Credits;
+
     public AccountData(string guid, string password)
     {
         this.guid = guid;
         this.password = password;
+    }
+
+    public void Setup(XElement xml) {
+        var acc = xml.Element("Account");
+
+        Name = acc.Element("Name").Value;
+        AccountID = int.Parse(acc.Element("AccountId").Value);
+        NextCharSlotPrice = int.Parse(acc.Element("NextCharSlotPrice").Value);
+        Fame = int.Parse(acc.Element("Fame").Value);
+        Credits = int.Parse(acc.Element("Credits").Value);
     }
 }
