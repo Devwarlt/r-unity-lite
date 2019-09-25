@@ -44,7 +44,7 @@ namespace Assets.Resources.Scripts.Screens.Main
         {
             version.text = version.text.Replace(versionKey, Application.version);
 
-            //playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.CharacterSelect, LoadSceneMode.Additive));
+            playButton.onClick.AddListener(() => onPlayButtonPress());
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
             quitButton.interactable = Application.platform.HasQuitSupport();
             quitButton.onClick.AddListener(() => Application.Quit());
@@ -55,6 +55,12 @@ namespace Assets.Resources.Scripts.Screens.Main
 
             Account.onAccountChange += loadAccount;
             Account.load();
+        }
+
+        private void onPlayButtonPress() {
+            PlayScreen.Init(Account.data);
+
+            Utils.ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive);
         }
 
         private void Awake()
@@ -68,16 +74,16 @@ namespace Assets.Resources.Scripts.Screens.Main
             loggedInGroup.SetActive(false);
             loggedOutGroup.SetActive(false);
 
-            if (Account.credentials != null)
+            if (Account.verify())
             {
                 loggedInGroup.SetActive(true);
 
                 /* CHARLIST TO GET NAME */
                     // The servers list is set from here, so needa make it where creds
                     // can be wrong and this gets sent
-                CharListHandler verify = new CharListHandler(Account.credentials.guid, Account.credentials.password);
-                verify.SendRequest();
-                verify.load();
+                CharListHandler charList = new CharListHandler(Account.credentials.guid, Account.credentials.password);
+                charList.SendRequest();
+                charList.load();
                 /* CHARLIST TO GET NAME */
 
                 nameText.text = Account.account.username;

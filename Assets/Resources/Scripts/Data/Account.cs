@@ -1,4 +1,5 @@
 ﻿using Assets.Resources.Scripts.Screens.Main;
+using Assets.Resources.Scripts.util.xml;
 using Assets.Resources.Scripts.Web.Handlers.app;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,7 +34,6 @@ public static class Account
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(location, FileMode.Open);
-
             credentials = formatter.Deserialize(stream) as CredentialsData;
         }
         else
@@ -63,6 +63,15 @@ public static class Account
         formatter.Serialize(stream, credentials);
         stream.Close();
     }
+
+    public static bool verify()
+    {
+        if (credentials == null)
+            return false;
+
+        var verify = new VerifyHandler(credentials.guid, credentials.password);
+        return (verify.SendRequest());
+    }
 }
 
 [System.Serializable]
@@ -78,7 +87,20 @@ public class CredentialsData
     }
 }
 
-public class AccountData
+public class AccountData : XElem
 {
     public string username;
+    public int accountID;
+    public int nextCharSlotPrice;
+    public int fame;
+    public int credits;
+
+    public AccountData(XElement elem) : base(XElemType.node, elem)
+    {
+        username = getString("Name");
+        accountID = getInt("AccountId", 0);
+        nextCharSlotPrice = getInt("NextCharSlotPrice", 1000);
+        fame = getInt("Fame", 0);
+        credits = getInt("Credits", 0);
+    }
 }

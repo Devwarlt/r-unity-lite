@@ -3,6 +3,7 @@
     public enum GameScene
     {
         Main,
-        Servers
+        Servers,
+        Play
     }
 }
