@@ -45,7 +45,10 @@ public class LoginPopup : MonoBehaviour
     	VerifyHandler verify = new VerifyHandler(emailInput.text, passwordInput.text);
 
     	if (verify.SendRequest())
-    		responseBox.text = "<color=green>Successfully logged in!";
+        {
+            responseBox.text = "<color=green>Successfully logged in!";
+            Account.set(emailInput.text, passwordInput.text);
+        }
     	else
     		responseBox.text = "<color=red>Invalid Login!";
     }

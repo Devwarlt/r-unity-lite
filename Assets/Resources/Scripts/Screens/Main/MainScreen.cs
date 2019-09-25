@@ -9,23 +9,28 @@ namespace Assets.Resources.Scripts.Screens.Main
     {
         [Header("Version Settings")]
         public string versionTag;
-
         public string versionKey;
-
-        [Header("Top Buttons")]
-        public Button loginButton;
-
-        public Button registerButton;
 
         [Header("Bottom Buttons")]
         public Button serverButton;
-
         public Button playButton;
         public Button quitButton;
 
         [Header("Popups")]
         public GameObject loginPopup;
         public GameObject registerPopup;
+
+        [Header("TopRight Groups")]
+        public GameObject loggedInGroup;
+        public GameObject loggedOutGroup;
+
+        [Header("LoggedIn Buttons")]
+        public Button loginButton;
+        public Button registerButton;
+
+        [Header("LoggedOut Buttons")]
+        public Button logoutButton;
+        public TextMeshProUGUI nameText;
 
         private TextMeshProUGUI version;
 
@@ -44,12 +49,20 @@ namespace Assets.Resources.Scripts.Screens.Main
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
             quitButton.interactable = Application.platform.HasQuitSupport();
             quitButton.onClick.AddListener(() => Application.Quit());
+
+            loadAccount();
         }
 
         private void Awake()
         {
             GetGameObjects();
             InitializeGameObjects();
+        }
+
+        public void loadAccount()
+        {
+            loggedInGroup.SetActive(false);
+            loggedOutGroup.SetActive(false);
         }
 
         private void OpenPopup(GameObject popup)
