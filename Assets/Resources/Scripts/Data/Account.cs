@@ -16,11 +16,12 @@ public static class Account
     public static string file = "/account.data";
     public static string location => path + file;
 
-    public static AccountData data;
+    public static CredentialsData credentials;
+    public static AccountData account;
 
     public static void set(string guid = null, string password = null)
     {
-        data = new AccountData(guid, password);
+        credentials = new CredentialsData(guid, password);
         save();
 
         onAccountChange();
@@ -33,11 +34,11 @@ public static class Account
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(location, FileMode.Open);
 
-            data = formatter.Deserialize(stream) as AccountData;
+            credentials = formatter.Deserialize(stream) as CredentialsData;
         }
         else
         {
-            data = null;
+            credentials = null;
             Debug.Log("Account file not found in " + location);
         }
 
@@ -46,7 +47,7 @@ public static class Account
 
     public static void delete()
     {
-        data = null;
+        credentials = null;
         File.Delete(location);
 
         onAccountChange();
@@ -54,25 +55,30 @@ public static class Account
 
     public static void save()
     {
-        if (data == null)
+        if (credentials == null)
             return;
 
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(location, FileMode.Create);
-        formatter.Serialize(stream, data);
+        formatter.Serialize(stream, credentials);
         stream.Close();
     }
 }
 
 [System.Serializable]
-public class AccountData
+public class CredentialsData
 {
     public string guid;
     public string password;
 
-    public AccountData(string guid, string password)
+    public CredentialsData(string guid, string password)
     {
         this.guid = guid;
         this.password = password;
     }
+}
+
+public class AccountData
+{
+    public string username;
 }

@@ -68,17 +68,19 @@ namespace Assets.Resources.Scripts.Screens.Main
             loggedInGroup.SetActive(false);
             loggedOutGroup.SetActive(false);
 
-            if (Account.data != null)
+            if (Account.credentials != null)
             {
                 loggedInGroup.SetActive(true);
 
                 /* CHARLIST TO GET NAME */
-                CharListHandler verify = new CharListHandler(Account.data.guid, Account.data.password);
+                    // The servers list is set from here, so needa make it where creds
+                    // can be wrong and this gets sent
+                CharListHandler verify = new CharListHandler(Account.credentials.guid, Account.credentials.password);
                 verify.SendRequest();
-                var elem = verify.getElem();
+                verify.load();
                 /* CHARLIST TO GET NAME */
 
-                nameText.text = elem.Element("Account").Element("Name").Value;
+                nameText.text = Account.account.username;
             }
             else
             {
