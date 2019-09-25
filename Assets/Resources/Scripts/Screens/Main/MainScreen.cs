@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Assets.Resources.Scripts.Web.Handlers.app;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -70,7 +71,14 @@ namespace Assets.Resources.Scripts.Screens.Main
             if (Account.data != null)
             {
                 loggedInGroup.SetActive(true);
-                nameText.text = Account.data.guid;
+
+                /* CHARLIST TO GET NAME */
+                CharListHandler verify = new CharListHandler(Account.data.guid, Account.data.password);
+                verify.SendRequest();
+                var elem = verify.getElem();
+                /* CHARLIST TO GET NAME */
+
+                nameText.text = elem.Element("Account").Element("Name").Value;
             }
             else
             {
