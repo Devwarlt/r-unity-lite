@@ -9,6 +9,9 @@ using UnityEngine;
 
 public static class Account
 {
+    public delegate void AccountEventHandler();
+    public static AccountEventHandler onAccountChange;
+
     public static string path = Application.persistentDataPath;
     public static string file = "/account.data";
     public static string location => path + file;
@@ -19,9 +22,11 @@ public static class Account
     {
         data = new AccountData(guid, password);
         save();
+
+        onAccountChange();
     }
 
-    public static bool load()
+    public static void load()
     {
         if (File.Exists(location))
         {
@@ -29,26 +34,33 @@ public static class Account
             FileStream stream = new FileStream(location, FileMode.Open);
 
             data = formatter.Deserialize(stream) as AccountData;
-            return true;
         }
         else
         {
+            data = null;
             Debug.Log("Account file not found in " + location);
-            return false;
         }
-    }
 
-    public static void save()
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(location, FileMode.Create);
-        formatter.Serialize(stream, data);
-        stream.Close();
+        onAccountChange();
     }
 
     public static void delete()
     {
+        data = null;
         File.Delete(location);
+
+        onAccountChange();
+    }
+
+    public static void save()
+    {
+        if (data == null)
+            return;
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(location, FileMode.Create);
+        formatter.Serialize(stream, data);
+        stream.Close();
     }
 }
 

@@ -19,9 +19,6 @@ public class RegisterPopup : MonoBehaviour
     [Header("Response Textbox")]
     public TextMeshProUGUI responseBox;
 
-    [Header("Storage")]
-    public GOStorage goStorage;
-
     private void InitializeGameObjects()
     {
     	responseBox.gameObject.SetActive(false);
@@ -56,7 +53,7 @@ public class RegisterPopup : MonoBehaviour
     	if (register.SendRequest()) {
     	    responseBox.text = "<color=green>Successfully Registered!";
             Account.set(emailInput.text, passwordInput.text);
-            (goStorage.get("screen") as MainScreen).loadAccount();
+            Account.onAccountChange();
             Destroy(this.gameObject);
         }
     	else

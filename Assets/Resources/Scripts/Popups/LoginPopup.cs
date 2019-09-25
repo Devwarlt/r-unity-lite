@@ -18,9 +18,6 @@ public class LoginPopup : MonoBehaviour
     [Header("Response Textbox")]
     public TextMeshProUGUI responseBox;
 
-    [Header("Storage")]
-    public GOStorage goStorage;
-
     private void InitializeGameObjects()
     {
     	responseBox.gameObject.SetActive(false);
@@ -52,7 +49,7 @@ public class LoginPopup : MonoBehaviour
         {
             responseBox.text = "<color=green>Successfully logged in!";
             Account.set(emailInput.text, passwordInput.text);
-            (goStorage.get("screen") as MainScreen).loadAccount();
+            Account.onAccountChange();
             Destroy(this.gameObject);
         }
     	else
