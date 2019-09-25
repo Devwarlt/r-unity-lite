@@ -10,14 +10,14 @@ using UnityEngine;
 public static class Account
 {
     public static string path = Application.persistentDataPath;
-    public static string file = "/account.bin";
+    public static string file = "/account.data";
     public static string location => path + file;
 
     public static AccountData data;
 
     public static void set(string guid = null, string password = null)
     {
-        data.set(guid, password);
+        data = new AccountData(guid, password);
         save();
     }
 
@@ -41,9 +41,14 @@ public static class Account
     public static void save()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Create);
+        FileStream stream = new FileStream(location, FileMode.Create);
         formatter.Serialize(stream, data);
         stream.Close();
+    }
+
+    public static void delete()
+    {
+        File.Delete(location);
     }
 }
 
@@ -57,13 +62,5 @@ public class AccountData
     {
         this.guid = guid;
         this.password = password;
-    }
-
-    public void set(string guid, string password)
-    {
-        if (guid != null)
-            this.guid = guid;
-        if (password != null)
-            this.password = password;
     }
 }
