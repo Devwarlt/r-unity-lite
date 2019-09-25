@@ -44,23 +44,17 @@ namespace Assets.Resources.Scripts.Screens.Main
         {
             version.text = version.text.Replace(versionKey, Application.version);
 
-            playButton.onClick.AddListener(() => onPlayButtonPress());
+            playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
             quitButton.interactable = Application.platform.HasQuitSupport();
             quitButton.onClick.AddListener(() => Application.Quit());
 
             loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
             registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
-            logoutButton.onClick.AddListener(() => logOut());
+            logoutButton.onClick.AddListener(() => Account.delete());
 
             Account.onAccountChange += loadAccount;
             Account.load();
-        }
-
-        private void onPlayButtonPress() {
-            PlayScreen.Init(Account.data);
-
-            Utils.ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive);
         }
 
         private void Awake()
@@ -90,14 +84,10 @@ namespace Assets.Resources.Scripts.Screens.Main
             }
             else
             {
+                if (Account.credentials != null)
+                    Account.delete();
                 loggedOutGroup.SetActive(true);
             }
-        }
-
-        public void logOut()
-        {
-            Account.delete();
-            loadAccount();
         }
 
         private void OpenPopup(GameObject popup)

@@ -8,13 +8,24 @@ using System.Xml.Linq;
 
 public static class Servers
 {
+    public delegate void ServerEventHandler(int server);
+    public static event ServerEventHandler onServerSelect;
+
     public static List<ServerData> servers;
+    public static ServerData selected;
 
     public static void load(XElement root)
     {
         servers = new List<ServerData>();
         foreach (var elem in root.Elements("Server"))
             servers.Add(new ServerData(elem));
+        onServerSelect += setSelectedServer;
+    }
+
+    public static void setSelectedServer(int server)
+    {
+        var serv = servers[server];
+        selected = serv;
     }
 }
 
