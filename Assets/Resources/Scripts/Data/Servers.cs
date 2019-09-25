@@ -8,24 +8,34 @@ using System.Xml.Linq;
 
 public static class Servers
 {
-    public delegate void ServerEventHandler(int server);
-    public static event ServerEventHandler onServerSelect;
+    public delegate void ServersEventHandler();
+    public static ServersEventHandler onServerChange;
 
     public static List<ServerData> servers;
     public static ServerData selected;
+    public static int selectedId;
 
     public static void load(XElement root)
     {
         servers = new List<ServerData>();
+        var serverId = 0;
         foreach (var elem in root.Elements("Server"))
-            servers.Add(new ServerData(elem));
-        onServerSelect += setSelectedServer;
+        {
+            servers.Add(new ServerData(elem, serverId));
+            serverId++;
+        }
+        setSelectedServer(sendEvent: false);
     }
 
-    public static void setSelectedServer(int server)
+    public static void setSelectedServer(int server = 0, bool sendEvent = true)
     {
-        var serv = servers[server];
-        selected = serv;
+        if (server >= servers.Count())
+            server = 0;
+        selected = servers[server];
+        selectedId = server;
+
+        if (sendEvent)
+            onServerChange();
     }
 }
 
@@ -38,9 +48,11 @@ public class ServerData : XElem
     public double _long;
     public double usage;
     public bool adminonly;
+    public int id;
 
-    public ServerData(XElement elem) : base(XElemType.node, elem)
+    public ServerData(XElement elem, int id) : base(XElemType.node, elem)
     {
+        this.id = id;
         name = getString("Name");
         dns = getString("DNS");
         port = getInt("Port", 2050);
