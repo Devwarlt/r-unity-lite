@@ -874,6 +874,7 @@ GameObject:
   - component: {fileID: 6537176817361752409}
   - component: {fileID: 6537176817361752415}
   - component: {fileID: 8397533571580266526}
+  - component: {fileID: 6875628787194178782}
   m_Layer: 5
   m_Name: Register Popup
   m_TagString: Untagged
@@ -928,6 +929,19 @@ MonoBehaviour:
   cancelButton: {fileID: 6328342676650137114}
   registerButton: {fileID: 6328342677243984375}
   responseBox: {fileID: 8374674845597233936}
+  goStorage: {fileID: 6875628787194178782}
+--- !u!114 &6875628787194178782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537176817361752410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee79e0e2f2f36984e9453727c88e49f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6537176817761127160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,81 +1172,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Email Input
       objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_text
-      value: Enter email...
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 7034759047018093772, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1337,6 +1276,81 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_text
+      value: Enter email...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9042f0bda7fc8fa46b0a920af2670a4c, type: 3}
@@ -1789,86 +1803,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Password Input
       objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_InputType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_text
-      value: Enter password...
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 7034759047018093772, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1974,6 +1908,86 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_InputType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_text
+      value: Enter password...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9042f0bda7fc8fa46b0a920af2670a4c, type: 3}
 --- !u!224 &4229019259471273199 stripped
@@ -2005,86 +2019,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Confirm Password Input
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_ContentType
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_InputType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_KeyboardType
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_CharacterValidation
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_text
-      value: Re-enter password...
-      objectReference: {fileID: 0}
-    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
-        type: 3}
-      propertyPath: m_firstOverflowCharacterIndex
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7034759047018093772, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
         type: 3}
@@ -2190,6 +2124,86 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_InputType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634536448936513197, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_text
+      value: Re-enter password...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731205511232837348, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809548985291503651, guid: 9042f0bda7fc8fa46b0a920af2670a4c,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9042f0bda7fc8fa46b0a920af2670a4c, type: 3}
