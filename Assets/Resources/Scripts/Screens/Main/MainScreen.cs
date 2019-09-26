@@ -42,7 +42,7 @@ namespace Assets.Resources.Scripts.Screens.Main
 
         private void InitializeGameObjects()
         {
-            version.text = version.text.Replace(versionKey, Application.version);
+            version.text = AppEngine.getBuild();
 
             playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));

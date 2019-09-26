@@ -17,10 +17,6 @@ namespace Assets.Resources.Scripts.Web
 
     public sealed class GameWebRequest
     {
-        private static GameWebProtocol webServerProtocol => GameWebProtocol.HTTP;
-        private static string webServerIPAddress => "54.39.227.169";
-        private static int webServerPort => 8080;
-
         private readonly HttpMethod method;
         private readonly Encoding encoding;
         private readonly GameWebMediaHeader header;
@@ -55,7 +51,7 @@ namespace Assets.Resources.Scripts.Web
         public void AddQuery(string key, string value) => nameValueCollection.Add(key, value);
 
         private string UriString(bool hasPrefix = true)
-            => $"{webServerProtocol.ToString().ToLower()}://{webServerIPAddress}:{webServerPort.ToString()}/{(hasPrefix ? request.ValidateRequestPath() : string.Empty)}";
+            => $"{AppEngine.getUrl()}/{(hasPrefix ? request.ValidateRequestPath() : string.Empty)}";
 
         [Obsolete]
         private void HandleGetRequest()
@@ -125,7 +121,7 @@ namespace Assets.Resources.Scripts.Web
             if (string.IsNullOrEmpty(response))
             {
                 Log.Error("Client received an empty response from request '{0}' to the AppEngine via {1} method and {2} protocol!",
-                    request, method.ToString(), webServerProtocol.ToString());
+                    request, method.ToString(), AppEngine.webServerProtocol.ToString());
                 return null;
             }
 
