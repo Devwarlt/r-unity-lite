@@ -90,18 +90,22 @@ public class CredentialsData
 
 public class AccountData : XElem
 {
-    public string username;
     public int accountID;
-    public int nextCharSlotPrice;
-    public int fame;
+    public string username;
+    public bool admin;
+    public int rank;
     public int credits;
+    public int fame;
+    public int nextCharSlotPrice;
 
     public AccountData(XElement elem) : base(XElemType.node, elem)
     {
-        username = getString("Name");
         accountID = getInt("AccountId", 0);
-        nextCharSlotPrice = getInt("NextCharSlotPrice", 1000);
-        fame = getInt("Fame", 0);
+        username = getString("Name", "");
+        admin = getBool("Admin", false);
+        rank = getInt("Rank", 0);
         credits = getInt("Credits", 0);
+        fame = getInt("Fame", 0);
+        nextCharSlotPrice = getInt("NextCharSlotPrice", 1000);
     }
 }

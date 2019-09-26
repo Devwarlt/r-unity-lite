@@ -24,6 +24,9 @@ namespace Assets.Resources.Scripts.Screens.Main
 
             foreach (var serv in Servers.servers)
             {
+                if (serv.adminonly && !Account.account.admin)
+                    continue;
+
                 GameObject go = Instantiate(server, serverGroup.transform);
                 (go.GetComponent(typeof(ServerControl)) as ServerControl).init(serv);
             }
