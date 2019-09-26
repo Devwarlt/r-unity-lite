@@ -61,4 +61,12 @@ public class ServerData : XElem
         usage = getDouble("Usage", 0);
         adminonly = getBool("AdminOnly", false);
     }
+
+    /* THIS CONSTRUCTOR IS USED FOR TESTING */
+    public ServerData(string name, double usage, int id) : base(XElemType.node, null)
+    {
+        this.id = id;
+        this.name = name;
+        this.usage = usage;
+    }
 }
