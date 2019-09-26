@@ -19,6 +19,7 @@ namespace Assets.Resources.Scripts.Web.Handlers.app
             var elem = XElement.Parse(request.OnResponse());
 
             Account.account = new AccountData(elem.Element("Account"));
+            CharList.load(elem);
             Servers.load(elem.Element("Servers"));
         }
     }

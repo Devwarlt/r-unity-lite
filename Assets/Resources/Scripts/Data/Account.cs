@@ -95,7 +95,7 @@ public class AccountData : XElem
     public bool admin;
     public int rank;
     public int credits;
-    public int fame;
+    public int fame; // FAME IS LOCATED UNDER STATS
     public int nextCharSlotPrice;
 
     public AccountData(XElement elem) : base(XElemType.node, elem)
