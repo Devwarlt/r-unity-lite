@@ -35,6 +35,7 @@ public static class Account
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(location, FileMode.Open);
             credentials = formatter.Deserialize(stream) as CredentialsData;
+            stream.Close();
         }
         else
         {
