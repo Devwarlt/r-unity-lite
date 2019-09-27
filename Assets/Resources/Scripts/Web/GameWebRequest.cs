@@ -41,8 +41,8 @@ namespace Assets.Resources.Scripts.Web
             this.encoding = encoding;
             this.header = header;
 
-            if (!WebUtils.Headers.ContainsKey(header)) throw new Exception("GameWebMediaHeader not found in dictionary!");
-            if (!method.SupportedHttpMethods()) throw new Exception("HttpMethod not supported!");
+            if (!WebUtils.Headers.ContainsKey(header)) throw new WebRequestException("GameWebMediaHeader not found in dictionary!");
+            if (!method.SupportedHttpMethods()) throw new WebRequestException("HttpMethod not supported!");
 
             nameValueCollection = new Dictionary<string, string>();
             response = string.Empty;
@@ -73,7 +73,7 @@ namespace Assets.Resources.Scripts.Web
 
         private async void HandleGetRequestAsync()
         {
-            using (var client = new HttpClient(new HttpClientHandler()
+            using (var client = new HttpClient(new HttpClientHandler
             {
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
             }))
@@ -99,7 +99,7 @@ namespace Assets.Resources.Scripts.Web
 
         private async void HandlePostRequestAsync()
         {
-            using (var client = new HttpClient(new HttpClientHandler()
+            using (var client = new HttpClient(new HttpClientHandler
             {
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
             }))

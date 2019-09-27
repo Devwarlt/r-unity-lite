@@ -7,7 +7,7 @@ namespace Assets.Resources.Scripts.Web
 {
     public static class WebUtils
     {
-        public static Dictionary<GameWebMediaHeader, string> Headers = new Dictionary<GameWebMediaHeader, string>()
+        public static readonly Dictionary<GameWebMediaHeader, string> Headers = new Dictionary<GameWebMediaHeader, string>
         {
             { GameWebMediaHeader.ApplicationJavascript, "application/javascript" },
             { GameWebMediaHeader.ApplicationJson, "application/json" },
