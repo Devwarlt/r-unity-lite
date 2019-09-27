@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Assets.Resources.Scripts.Web.Handlers.app;
 using Assets.Resources.Scripts;
+using Assets.Resources.Scripts.Screens.Main;
 
 public class RegisterPopup : MonoBehaviour
 {
@@ -50,13 +51,11 @@ public class RegisterPopup : MonoBehaviour
     	RegisterHandler register = new RegisterHandler(emailInput.text, passwordInput.text);
 
     	if (register.SendRequest()) {
-    		// some pserver sources require an age verification request, i'll leave this here
-    		// VerifyAgeHandler verifyAgeHandler = new VerifyAgeHandler(emailInput.text, passwordInput.text);
-    		// if (!verifyAgeHandler.SendRequest()) 
-    		// 	responseBox.text = "<color=red>Error while verifying account age!";
-    		// else
-    			responseBox.text = "<color=green>Successfully Registered!";
-    	}
+    	    responseBox.text = "<color=green>Successfully Registered!";
+            Account.set(emailInput.text, passwordInput.text);
+            Account.onAccountChange();
+            Destroy(this.gameObject);
+        }
     	else
     		responseBox.text = "<color=red>Error!";
     }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using Assets.Resources.Scripts.Web.Handlers.app;
 using Assets.Resources.Scripts;
+using Assets.Resources.Scripts.Screens.Main;
 
 public class LoginPopup : MonoBehaviour
 {
@@ -45,7 +46,12 @@ public class LoginPopup : MonoBehaviour
     	VerifyHandler verify = new VerifyHandler(emailInput.text, passwordInput.text);
 
     	if (verify.SendRequest())
-    		responseBox.text = "<color=green>Successfully logged in!";
+        {
+            responseBox.text = "<color=green>Successfully logged in!";
+            Account.set(emailInput.text, passwordInput.text);
+            Account.onAccountChange();
+            Destroy(this.gameObject);
+        }
     	else
     		responseBox.text = "<color=red>Invalid Login!";
     }

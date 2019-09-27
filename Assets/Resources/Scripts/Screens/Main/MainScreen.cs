@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Assets.Resources.Scripts.Web.Handlers.app;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,23 +10,28 @@ namespace Assets.Resources.Scripts.Screens.Main
     {
         [Header("Version Settings")]
         public string versionTag;
-
         public string versionKey;
-
-        [Header("Top Buttons")]
-        public Button loginButton;
-
-        public Button registerButton;
 
         [Header("Bottom Buttons")]
         public Button serverButton;
-
         public Button playButton;
         public Button quitButton;
 
         [Header("Popups")]
         public GameObject loginPopup;
         public GameObject registerPopup;
+
+        [Header("TopRight Groups")]
+        public GameObject loggedInGroup;
+        public GameObject loggedOutGroup;
+
+        [Header("LoggedIn Buttons")]
+        public Button loginButton;
+        public Button registerButton;
+
+        [Header("LoggedOut Buttons")]
+        public Button logoutButton;
+        public TextMeshProUGUI nameText;
 
         private TextMeshProUGUI version;
 
@@ -36,20 +42,52 @@ namespace Assets.Resources.Scripts.Screens.Main
 
         private void InitializeGameObjects()
         {
-            version.text = version.text.Replace(versionKey, Application.version);
+            version.text = AppEngine.getBuild();
 
-            //playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.CharacterSelect, LoadSceneMode.Additive));
-            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
-            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
+            playButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
             serverButton.onClick.AddListener(() => Utils.ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
             quitButton.interactable = Application.platform.HasQuitSupport();
             quitButton.onClick.AddListener(() => Application.Quit());
+
+            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
+            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
+            logoutButton.onClick.AddListener(() => Account.delete());
+
+            Account.onAccountChange += loadAccount;
+            Account.load();
         }
 
         private void Awake()
         {
             GetGameObjects();
             InitializeGameObjects();
+        }
+
+        public void loadAccount()
+        {
+            loggedInGroup.SetActive(false);
+            loggedOutGroup.SetActive(false);
+
+            if (Account.verify())
+            {
+                loggedInGroup.SetActive(true);
+
+                /* CHARLIST TO GET NAME */
+                    // The servers list is set from here, so needa make it where creds
+                    // can be wrong and this gets sent
+                CharListHandler charList = new CharListHandler(Account.credentials.guid, Account.credentials.password);
+                charList.SendRequest();
+                charList.load();
+                /* CHARLIST TO GET NAME */
+
+                nameText.text = Account.account.username;
+            }
+            else
+            {
+                if (Account.credentials != null)
+                    Account.delete();
+                loggedOutGroup.SetActive(true);
+            }
         }
 
         private void OpenPopup(GameObject popup)
