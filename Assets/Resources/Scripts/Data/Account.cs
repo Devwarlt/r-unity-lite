@@ -49,6 +49,8 @@ public static class Account
     public static void delete()
     {
         credentials = null;
+        account = null;
+        AccountData.onCurrencyChange();
         File.Delete(location);
 
         onAccountChange();
@@ -98,7 +100,7 @@ public class AccountData : XElem
     public bool isAgeVerified;
     public bool isFirstDeath;
     public int petYardType;
-    public int credits;
+    public int _credits;
     public int nextCharSlotPrice;
     public int charSlotCurrency;
     public string menuMusic;
@@ -107,6 +109,20 @@ public class AccountData : XElem
     public int spriteMinRank;
     public int beginnerPackageTimeLeft;
     public AccountStatsData stats;
+
+    public delegate void CurrencyEventHandler();
+    public static CurrencyEventHandler onCurrencyChange;
+
+    public int fame
+    {
+        get { return stats.fame; }
+        set { stats.fame = value; onCurrencyChange(); }
+    }
+    public int credits
+    {
+        get { return _credits; }
+        set { _credits = value; onCurrencyChange(); }
+    }
 
     public AccountData(XElement elem) : base(XElemType.node, elem)
     {

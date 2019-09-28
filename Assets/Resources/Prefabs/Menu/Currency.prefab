@@ -540,8 +540,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c21569a39fba9544aa278408c894aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fame: {fileID: 5266337359565503009}
-  _credits: {fileID: 5266337359949617234}
+  fameText: {fileID: 5266337359565503009}
+  fameGroup: {fileID: 5266337360151421378}
+  creditsText: {fileID: 5266337359949617234}
+  creditsGroup: {fileID: 5266337360777681604}
 --- !u!1 &5266337360777681604
 GameObject:
   m_ObjectHideFlags: 0
