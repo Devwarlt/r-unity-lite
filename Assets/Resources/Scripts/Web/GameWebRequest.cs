@@ -51,7 +51,7 @@ namespace Assets.Resources.Scripts.Web
         public void AddQuery(string key, string value) => nameValueCollection.Add(key, value);
 
         private string UriString(bool hasPrefix = true)
-            => $"{AppEngine.getUrl()}/{(hasPrefix ? request.ValidateRequestPath() : string.Empty)}";
+            => $"{AppEngine.env.serverUrl()}/{(hasPrefix ? request.ValidateRequestPath() : string.Empty)}";
 
         [Obsolete]
         private void HandleGetRequest()
@@ -121,7 +121,7 @@ namespace Assets.Resources.Scripts.Web
             if (string.IsNullOrEmpty(response))
             {
                 Log.Error("Client received an empty response from request '{0}' to the AppEngine via {1} method and {2} protocol!",
-                    request, method.ToString(), AppEngine.webServerProtocol.ToString());
+                    request, method.ToString(), AppEngine.env.serverProtocol().ToString());
                 return null;
             }
 
