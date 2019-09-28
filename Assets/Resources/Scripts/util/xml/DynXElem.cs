@@ -24,9 +24,9 @@ namespace Assets.Resources.Scripts.util.xml
             Element = elem;
         }
 
-        public bool exists(string name)
+        public bool exists(string name, XElemType? type = null)
         {
-            switch (ElemType)
+            switch (type ?? ElemType)
             {
                 case XElemType.attribute:
                     return Element.Attribute(name) != null;
@@ -35,11 +35,11 @@ namespace Assets.Resources.Scripts.util.xml
             }
             return false;
         }
-        public string getString(string name, string def = null)
+        public string getString(string name, string def = null, XElemType? type = null)
         {
             if (!exists(name))
                 return def;
-            switch (ElemType)
+            switch (type ?? ElemType)
             {
                 case XElemType.attribute:
                     return Element.Attribute(name).Value;
@@ -49,40 +49,40 @@ namespace Assets.Resources.Scripts.util.xml
                     return def;
             }
         }
-        public int getInt(string name, int def)
+        public int getInt(string name, int def, XElemType? type = null)
         {
             int ret;
-            if (!exists(name) ||
-                !int.TryParse(getString(name), out ret))
+            if (!exists(name, type) ||
+                !int.TryParse(getString(name, type: type), out ret))
                 return def;
             return ret;
         }
-        public double getDouble(string name, double def)
+        public double getDouble(string name, double def, XElemType? type = null)
         {
             double ret;
-            if (!exists(name) ||
-                !double.TryParse(getString(name), out ret))
+            if (!exists(name, type) ||
+                !double.TryParse(getString(name, type: type), out ret))
                 return def;
             return ret;
         }
-        public bool getBool(string name, bool def)
+        public bool getBool(string name, bool def, XElemType? type = null)
         {
-            if (!exists(name))
+            if (!exists(name, type))
                 return def;
-            var str = getString(name);
+            var str = getString(name, type: type);
             return !(str == "0" || str == "false" || str == "f");
         }
-        public string[] getArray(string name, string[] split)
+        public string[] getArray(string name, string[] split, XElemType? type = null)
         {
-            if (!exists(name))
+            if (!exists(name, type))
                 return null;
-            return getString(name).Split(split, StringSplitOptions.None);
+            return getString(name, type: type).Split(split, StringSplitOptions.None);
         }
-        public uint getUint(string name, uint def)
+        public uint getUint(string name, uint def, XElemType? type = null)
         {
             uint ret;
-            if (!exists(name) ||
-                !uint.TryParse(getString(name).Substring(2), NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out ret))
+            if (!exists(name, type) ||
+                !uint.TryParse(getString(name, type: type).Substring(2), NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture, out ret))
                 return def;
             return ret;
         }

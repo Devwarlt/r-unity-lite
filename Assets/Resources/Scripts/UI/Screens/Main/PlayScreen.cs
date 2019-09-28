@@ -9,8 +9,6 @@ namespace Assets.Resources.Scripts.Screens.Main {
 
         [Header("AccountText")]
         public TextMeshProUGUI nameText;
-        public TextMeshProUGUI fameText;
-        public TextMeshProUGUI creditsText;
 
         private void Awake() {
             backButton.interactable = true;
@@ -19,8 +17,6 @@ namespace Assets.Resources.Scripts.Screens.Main {
             if (Account.account != null)
             {
                 nameText.text = Account.account.username;
-                fameText.text = $"Fame: {Account.account.fame}";
-                creditsText.text = $"Gold: {Account.account.credits}";
             }
         }
     }

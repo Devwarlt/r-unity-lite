@@ -94,9 +94,19 @@ public class AccountData : XElem
     public string username;
     public bool admin;
     public int rank;
+    public int lastSeen; //possibly long?
+    public bool isAgeVerified;
+    public bool isFirstDeath;
+    public int petYardType;
     public int credits;
-    public int fame; // FAME IS LOCATED UNDER STATS
     public int nextCharSlotPrice;
+    public int charSlotCurrency;
+    public string menuMusic;
+    public string deadMusic;
+    public int mapMinRank;
+    public int spriteMinRank;
+    public int beginnerPackageTimeLeft;
+    public AccountStatsData stats;
 
     public AccountData(XElement elem) : base(XElemType.node, elem)
     {
@@ -104,8 +114,61 @@ public class AccountData : XElem
         username = getString("Name", "");
         admin = getBool("Admin", false);
         rank = getInt("Rank", 0);
+        lastSeen = getInt("LastSeen", 0);
+        isAgeVerified = getBool("isAgeVerified", true);
+        isFirstDeath = getBool("isFirstDeath", false);
+        petYardType = getInt("PetYardType", 1);
         credits = getInt("Credits", 0);
-        fame = getInt("Fame", 0);
         nextCharSlotPrice = getInt("NextCharSlotPrice", 1000);
+        charSlotCurrency = getInt("CharSlotCurrency", 1);
+        menuMusic = getString("MenuMusic");
+        deadMusic = getString("DeadMusic");
+        mapMinRank = getInt("MapMinRank", 0);
+        spriteMinRank = getInt("SpriteMinRank", 0);
+        beginnerPackageTimeLeft = getInt("BeginnerPackageTimeLeft", 0);
+        stats = new AccountStatsData(elem.Element("Stats"));
+    }
+}
+
+public class AccountStatsData : XElem
+{
+    public Dictionary<uint, ClassStatsData> classStats;
+    public int bestCharFame;
+    public int totalFame;
+    public int fame;
+
+    public AccountStatsData(XElement elem) : base(XElemType.node, elem)
+    {
+        //classStats = ClassStatsData.loadDict(elem); /* GIVES AN ERROR TRYING TO GET OBJECTTYPE */
+        bestCharFame = getInt("BestCharFame", 0);
+        totalFame = getInt("TotalFame", 0);
+        fame = getInt("Fame", 0);
+    }
+}
+
+public class ClassStatsData : XElem
+{
+    public uint objectType;
+    public int bestLevel;
+    public int bestFame;
+
+    public ClassStatsData(XElement elem) : base(XElemType.node,  elem)
+    {
+        objectType = getUint("objectType", 0, XElemType.attribute);
+        bestLevel = getInt("BestLevel", 1);
+        bestFame = getInt("BestFame", 0);
+    }
+
+    public static Dictionary<uint, ClassStatsData> loadDict(XElement root)
+    {
+        Dictionary<uint, ClassStatsData> dict = new Dictionary<uint, ClassStatsData>();
+
+        foreach (var elem in root.Elements("ClassStats"))
+        {
+            var stats = new ClassStatsData(elem);
+            dict.Add(stats.objectType, stats);
+        }
+
+        return dict;
     }
 }
