@@ -3,5 +3,5 @@ using UnityEngine;
 
 public static class AppEngine
 {
-    public static ApplicationSetup env = new ShotsRealmSetup();
+    public static ApplicationSetup env = new UTRebornSetup();
 }
