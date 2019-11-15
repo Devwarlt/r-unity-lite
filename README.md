@@ -12,7 +12,10 @@ See **[documentation][r-unity docs]**.
 | **Bledixon** | [![avatar][bledixon-avatar]][bledixon] | **Project B - Rise** |
 | **Devwarlt** | [![avatar][devwarlt-avatar]][devwarlt] | **LoESoft Games** |
 | **Shot** | [![avatar][shot-avatar]][shot] | **Shot's Realm** |
-| **Priest** | [none][priest] | **UT Reborn** |
+
+### Removed Developers
+- [Priest][priest]
+- Lynx
 
 [codacy]: https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Bledixon/Rotmg-Unity&amp;utm_campaign=Badge_Grade
 [codacy-badge]: https://api.codacy.com/project/badge/Grade/7dd42aa3d855420b8613d90ad188c973
