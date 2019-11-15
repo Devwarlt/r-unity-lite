@@ -3,10 +3,10 @@
 
 R-Unity is a Unity game client for Realm of the Mad God Private Servers.
 
-## Documentation
+### Documentation
 See **[documentation][r-unity docs]**.
 
-## R-Unity Developers
+### R-Unity Developers
 | Developer | GitHub Profile | Partner Member
 | --- | --- | --- |
 | **Bledixon** | [![avatar][bledixon-avatar]][bledixon] | **Project B - Rise** |
