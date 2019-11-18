@@ -1,7 +1,13 @@
-﻿namespace Assets.Core.Controller.Environment
+﻿using static Assets.Core.Utils.GW;
+
+namespace Assets.Core.Controller.Environment
 {
     public static partial class GBE
     {
-        public static IGBE environment = new UTReborn();
+        public static Environment localhost = new Environment("localhost", "Localhost", Protocol.HTTP, "https://github.com/Devwarlt", 8080);
+        public static Environment utReborn = new Environment("54.39.227.169", "UT Reborn", Protocol.HTTP, "https://github.com/Devwarlt", 8080);
+
+        public static Environment GetEnvironment() =>
+            localhost;
     }
 }

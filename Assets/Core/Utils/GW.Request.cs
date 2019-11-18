@@ -56,7 +56,7 @@ namespace Assets.Core.Utils
                 if (string.IsNullOrEmpty(response))
                 {
                     Log.Error("Client received an empty response from request '{0}' to the AppEngine via {1} method and {2} protocol!",
-                        request, method.ToString(), GBE.environment.serverProtocol().ToString());
+                        request, method.ToString(), GBE.GetEnvironment().GetProtocol().ToString());
                     return null;
                 }
 
@@ -76,7 +76,9 @@ namespace Assets.Core.Utils
             }
 
             private string UriString(bool hasPrefix = true) =>
-                $"{(GBE.environment.serverUrl())}/{(hasPrefix ? request.ValidateRequestPath() : string.Empty)}";
+                string.Format("{0}/{1}",
+                    GBE.GetEnvironment().GetUriString(),
+                    hasPrefix ? request.ValidateRequestPath() : string.Empty);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Assets.Core.View
 
         private void InitializeGameObjects()
         {
-            version.text = GBE.environment.buildLabel();
+            version.text = GBE.GetEnvironment().GetFormattedVersion();
 
             playButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
             serverButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
