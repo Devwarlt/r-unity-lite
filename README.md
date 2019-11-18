@@ -17,7 +17,7 @@ See **[documentation][r-unity docs]**.
 
 [codacy]: https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Devwarlt/R-Unity&amp;utm_campaign=Badge_Grade
 [codacy-badge]: https://api.codacy.com/project/badge/Grade/f717a3e828ef4c76a9180c249258e95d
-[license]: https://opensource.org/licenses/MIT
+[license]: /LICENSE
 [license-badge]: https://img.shields.io/badge/License-MIT-yellow.svg
 [r-unity docs]: https://devwarlt.github.io/r-unity-docs/
 [bledixon]: https://github.com/Bledixon
