@@ -2,15 +2,15 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(TileSplitter))]
+[CustomEditor(typeof(SpriteMetadataGenerator))]
 public class ObjectBuilderEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
-        var myScript = (TileSplitter)target;
+        var myScript = (SpriteMetadataGenerator)target;
 
-        if (GUILayout.Button("Split Tiles")) myScript.SplitTiles();
+        if (GUILayout.Button("Generate metadata")) myScript.GenerateSpriteMetadata();
     }
 }

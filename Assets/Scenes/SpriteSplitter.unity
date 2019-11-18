@@ -232,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de891e5c08802f459162ba4d6c5b427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeInPixel: 0
-  spritesheet: {fileID: 0}
+  sizeInPixel: 8
+  spritesheet: {fileID: 2800000, guid: 63432edcda6be2a44a55ec4dc1bf7dbd, type: 3}
 --- !u!4 &1633312887
 Transform:
   m_ObjectHideFlags: 0

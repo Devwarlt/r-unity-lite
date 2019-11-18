@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,25 @@ namespace Assets.Core.Utils
     {
         public static void ChangeSceneAsync(GameScene scene, LoadSceneMode mode) =>
             SceneManager.LoadSceneAsync(scene.ToSceneName(), mode);
+
+        public static int ComputeFileID(Type type, string name)
+        {
+            var toBeHashed = "s\0\0\0" + type.Namespace + type.Name + name;
+
+            using (var hash = new MD4())
+            {
+                var hashed = hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(toBeHashed));
+                var result = 0;
+
+                for (var i = 3; i >= 0; --i)
+                {
+                    result <<= 8;
+                    result |= hashed[i];
+                }
+
+                return result;
+            }
+        }
 
         public static T GetComponentByTag<T>(string tag) =>
             GameObject.FindWithTag(tag).GetComponent<T>();
