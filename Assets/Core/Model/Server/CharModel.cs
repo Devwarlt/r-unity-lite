@@ -40,7 +40,7 @@ namespace Assets.Core.Model.Server
             level = getInt("Level", 1);
             exp = getInt("Exp", 0);
             currentFame = getInt("currentFame", 0);
-            equipment = getArray("Equipment", new string[] { ", " })
+            equipment = getArray("Equipment", new[] { ", " })
                 .Select(x => int.Parse(x)).ToArray();
             maxHitPoints = getInt("MaxHitPoints", 0);
             hitPoints = getInt("HitPoints", 0);
