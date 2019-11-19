@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,24 @@ namespace Assets.Core.Utils
 {
     public static partial class GU
     {
+        public static bool AnyKeyDown(KeyCode key) =>
+            Input.GetKeyDown(key);
+
+        public static bool AnyKeyDown(KeyCode[] keys) =>
+            keys.Any(k => Input.GetKeyDown(k));
+
+        public static bool AnyKeyPressed(KeyCode key) =>
+            Input.GetKey(key);
+
+        public static bool AnyKeyPressed(KeyCode[] keys) =>
+            keys.Any(k => Input.GetKey(k));
+
+        public static bool AnyKeyUp(KeyCode key) =>
+            Input.GetKeyUp(key);
+
+        public static bool AnyKeyUp(KeyCode[] keys) =>
+            keys.Any(k => Input.GetKeyUp(k));
+
         public static void ChangeSceneAsync(GameScene scene, LoadSceneMode mode) =>
             SceneManager.LoadSceneAsync(scene.ToSceneName(), mode);
 
