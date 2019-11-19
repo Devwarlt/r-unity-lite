@@ -1,10 +1,10 @@
-# R-Unity
+# R-Unity LITE
 [![Codacy Badge][codacy-badge]][codacy] [![License: MIT][license-badge]][license]
 
 R-Unity is a Unity game client for Realm of the Mad God Private Servers.
 
 ### Documentation
-See **[documentation][r-unity docs]**.
+See **[documentation][r-unity docs]** (incoming).
 
 ### R-Unity Developers
 - [Devwarlt][devwarlt]
