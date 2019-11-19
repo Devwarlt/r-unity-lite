@@ -1,6 +1,6 @@
 ﻿using static Assets.Core.Utils.GW;
 
-namespace Assets.Core.Controller.Environment
+namespace Assets.Core.Controller.Environments
 {
     public static partial class GBE
     {
