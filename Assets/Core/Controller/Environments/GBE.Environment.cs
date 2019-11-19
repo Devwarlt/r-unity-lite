@@ -29,9 +29,8 @@ namespace Assets.Core.Controller.Environments
                 string.Format("{0} {1}",
                     copyright, Application.productName);
 
-            public string GetFormattedVersion() =>
-                string.Format("[{0}] {1} #{2}",
-                    name, Application.productName, Application.version);
+            public string GetName() =>
+                name;
 
             public string GetIpAddress() =>
                 ipAddress;
