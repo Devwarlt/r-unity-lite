@@ -15,6 +15,8 @@ namespace Assets.Core.View
         [Header("Version Settings")]
         public string versionTag;
 
+        public string environmentKey;
+        public string applicationKey;
         public string versionKey;
 
         [Header("Bottom Buttons")]
@@ -43,6 +45,9 @@ namespace Assets.Core.View
 
         public TextMeshProUGUI nameText;
 
+        [Header("Lite Tag")]
+        public GameObject litePrefab;
+
         private TextMeshProUGUI version;
 
         private void GetGameObjects() =>
@@ -50,7 +55,11 @@ namespace Assets.Core.View
 
         private void InitializeGameObjects()
         {
-            version.text = GBE.GetEnvironment().GetFormattedVersion();
+            version.text = "[ <u>{ENVIRONMENT}</u> ] {APPLICATION} - version: <color=yellow><b>{VERSION}</b></color>";
+            version.text = version.text
+                .Replace(environmentKey, GBE.GetEnvironment().GetName())
+                .Replace(applicationKey, Application.productName)
+                .Replace(versionKey, Application.version);
 
             playButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
             serverButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
@@ -59,6 +68,8 @@ namespace Assets.Core.View
             loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
             registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
             logoutButton.onClick.AddListener(() => AccountController.delete());
+
+            if (Application.companyName.ToLower().Contains("lite")) Instantiate(litePrefab, transform);
 
             AccountController.onAccountChange += loadAccount;
             AccountController.load();
