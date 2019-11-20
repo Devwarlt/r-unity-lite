@@ -1,7 +1,7 @@
 ﻿using Assets.Core.Controller;
 using Assets.Core.Controller.Environments;
 using Assets.Core.Controller.Handlers.app;
-using Assets.Core.Utils;
+using Assets.Core.Utils.Monitoring;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,11 +19,13 @@ namespace Assets.Core.View.Screens
         public string applicationKey;
         public string versionKey;
 
-        [Header("Bottom Buttons")]
-        public Button serverButton;
+        [Header("Menu Buttons")]
+        public Button supportButton;
 
+        public Button serverButton;
         public Button playButton;
-        public Button quitButton;
+        public Button accountButton;
+        public Button legendsButton;
 
         [Header("Popups")]
         public GameObject loginPopup;
@@ -48,26 +50,18 @@ namespace Assets.Core.View.Screens
         [Header("Lite Tag")]
         public GameObject litePrefab;
 
-        private TextMeshProUGUI version;
+        private Text version;
 
         private void GetGameObjects() =>
-            version = GetComponentByTag<TextMeshProUGUI>(versionTag);
+            version = GetComponentByTag<Text>(versionTag);
 
         private void InitializeGameObjects()
         {
-            version.text = "[ <u>{ENVIRONMENT}</u> ] {APPLICATION} - version: <color=yellow><b>{VERSION}</b></color>";
+            version.text = "[ {ENVIRONMENT} ] {APPLICATION} - version: <color=yellow>{VERSION}</color>";
             version.text = version.text
                 .Replace(environmentKey, GBE.GetEnvironment().GetName())
                 .Replace(applicationKey, Application.productName)
                 .Replace(versionKey, Application.version);
-
-            playButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
-            serverButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
-            quitButton.interactable = Application.platform.HasQuitSupport();
-            quitButton.onClick.AddListener(() => Application.Quit());
-            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
-            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
-            logoutButton.onClick.AddListener(() => AccountController.delete());
 
             if (Application.companyName.ToLower().Contains("lite")) Instantiate(litePrefab, transform);
 
@@ -79,6 +73,24 @@ namespace Assets.Core.View.Screens
         {
             GetGameObjects();
             InitializeGameObjects();
+            InitializeMenuButtons();
+            InitializeTopButtons();
+        }
+
+        private void InitializeMenuButtons()
+        {
+            supportButton.onClick.AddListener(() => Application.OpenURL(GBE.GetEnvironment().GetSupportLink()));
+            serverButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
+            playButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
+            accountButton.onClick.AddListener(() => Log.Warn("Account Screen isn't implemented yet."));
+            legendsButton.onClick.AddListener(() => Log.Warn("Legends Screen isn't implemented yet."));
+        }
+
+        private void InitializeTopButtons()
+        {
+            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
+            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
+            logoutButton.onClick.AddListener(() => AccountController.delete());
         }
 
         public void loadAccount()
@@ -106,23 +118,5 @@ namespace Assets.Core.View.Screens
 
         private void OpenPopup(GameObject popup) =>
             Instantiate(popup, transform);
-
-        private void DisableButtons()
-        {
-            playButton.interactable = false;
-            serverButton.interactable = false;
-            quitButton.interactable = false;
-            loginButton.interactable = false;
-            registerButton.interactable = false;
-        }
-
-        private void EnableButtons()
-        {
-            playButton.interactable = true;
-            serverButton.interactable = true;
-            quitButton.interactable = Application.platform.HasQuitSupport();
-            loginButton.interactable = true;
-            registerButton.interactable = true;
-        }
     }
 }

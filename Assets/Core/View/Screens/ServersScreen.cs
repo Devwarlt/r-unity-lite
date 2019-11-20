@@ -1,4 +1,5 @@
 ﻿using Assets.Core.Controller;
+using Assets.Core.Model.Server;
 using Assets.Core.Utils;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,8 +10,8 @@ namespace Assets.Core.View.Screens
     public class ServersScreen : MonoBehaviour
     {
         public Button backButton;
-        public GameObject server;
-        public GameObject serverGroup;
+        public GameObject serverItemList;
+        public ServerItemModel serverItemPrefab;
 
         private void Awake()
         {
@@ -28,8 +29,8 @@ namespace Assets.Core.View.Screens
             {
                 if (serv.adminonly && !AccountController.account.admin) continue;
 
-                var go = Instantiate(server, serverGroup.transform);
-                go.GetComponent<ServerView>().init(serv);
+                var serverItem = Instantiate(serverItemPrefab, serverItemList.transform);
+                serverItem.GetComponent<ServerItemModel>().init(serv);
             }
         }
     }
