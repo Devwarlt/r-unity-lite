@@ -8,9 +8,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Assets.Core.Utils.GU;
 
-namespace Assets.Core.View
+namespace Assets.Core.View.Screens
 {
-    public class MainScreenView : MonoBehaviour
+    public class MainScreen : MonoBehaviour
     {
         [Header("Version Settings")]
         public string versionTag;

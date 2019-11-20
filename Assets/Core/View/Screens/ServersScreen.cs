@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Assets.Core.Utils.GU;
 
-namespace Assets.Core.View
+namespace Assets.Core.View.Screens
 {
-    public class ServersScreenView : MonoBehaviour
+    public class ServersScreen : MonoBehaviour
     {
         public Button backButton;
         public GameObject server;

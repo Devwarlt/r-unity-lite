@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Assets.Core.Utils.GU;
 
-namespace Assets.Core.View
+namespace Assets.Core.View.Screens
 {
-    public class LoadingScreenView : MonoBehaviour
+    public class LoadingScreen : MonoBehaviour
     {
         public Button skip;
 

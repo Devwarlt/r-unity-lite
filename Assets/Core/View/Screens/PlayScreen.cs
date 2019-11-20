@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using static Assets.Core.Utils.GU;
 
-namespace Assets.Core.View
+namespace Assets.Core.View.Screens
 {
-    public class PlayScreenView : MonoBehaviour
+    public class PlayScreen : MonoBehaviour
     {
         public Button backButton;
 
