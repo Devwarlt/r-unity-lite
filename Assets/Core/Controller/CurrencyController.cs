@@ -1,18 +1,18 @@
 ﻿using Assets.Core.Model.Account;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Core.Controller
 {
     public class CurrencyController : MonoBehaviour
     {
         [Header("Fame")]
-        public TextMeshProUGUI fameText;
+        public Text fameText;
 
         public GameObject fameGroup;
 
         [Header("Credits")]
-        public TextMeshProUGUI creditsText;
+        public Text creditsText;
 
         public GameObject creditsGroup;
 
