@@ -7,7 +7,7 @@ namespace Assets.Core.Controller.Handlers.app
     {
         public RegisterHandler(string newGUID, string newPassword)
         {
-            request = new Request(HttpMethod.Post, "account/register");
+            request = new Request(HttpMethod.Get, "account/register");
             request.AddQuery("guid", newGUID);
             request.AddQuery("newGUID", newGUID);
             request.AddQuery("newPassword", newPassword);

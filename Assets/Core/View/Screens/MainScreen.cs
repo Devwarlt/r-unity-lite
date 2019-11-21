@@ -52,49 +52,20 @@ namespace Assets.Core.View.Screens
 
         private Text version;
 
-        private void GetGameObjects() =>
-            version = GetComponentByTag<Text>(versionTag);
-
-        private void InitializeGameObjects()
+        public void LoadAccount()
         {
-            version.text = "[ {ENVIRONMENT} ] {APPLICATION} - version: <color=yellow>{VERSION}</color>";
-            version.text = version.text
-                .Replace(environmentKey, GBE.GetEnvironment().GetName())
-                .Replace(applicationKey, Application.productName)
-                .Replace(versionKey, Application.version);
+            var isAccountNull = AccountController.account == null;
 
-            if (Application.companyName.ToLower().Contains("lite")) Instantiate(litePrefab, transform);
+            serverButton.interactable = !isAccountNull;
+            legendsButton.interactable = !isAccountNull;
 
-            AccountController.onAccountChange += loadAccount;
-            AccountController.load();
-        }
+            playButton.onClick.RemoveAllListeners();
+            playButton.onClick.AddListener(() =>
+            {
+                if (isAccountNull) OpenPopup(loginPopup);
+                else playButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
+            });
 
-        private void Awake()
-        {
-            GetGameObjects();
-            InitializeGameObjects();
-            InitializeMenuButtons();
-            InitializeTopButtons();
-        }
-
-        private void InitializeMenuButtons()
-        {
-            supportButton.onClick.AddListener(() => Application.OpenURL(GBE.GetEnvironment().GetSupportLink()));
-            serverButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
-            playButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Play, LoadSceneMode.Additive));
-            accountButton.onClick.AddListener(() => Log.Warn("Account Screen isn't implemented yet."));
-            legendsButton.onClick.AddListener(() => Log.Warn("Legends Screen isn't implemented yet."));
-        }
-
-        private void InitializeTopButtons()
-        {
-            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
-            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
-            logoutButton.onClick.AddListener(() => AccountController.delete());
-        }
-
-        public void loadAccount()
-        {
             loggedInGroup.SetActive(false);
             loggedOutGroup.SetActive(false);
 
@@ -114,6 +85,46 @@ namespace Assets.Core.View.Screens
 
                 loggedOutGroup.SetActive(true);
             }
+        }
+
+        private void Awake()
+        {
+            GetGameObjects();
+            InitializeGameObjects();
+            InitializeMenuButtons();
+            InitializeTopButtons();
+        }
+
+        private void GetGameObjects() =>
+            version = GetComponentByTag<Text>(versionTag);
+
+        private void InitializeGameObjects()
+        {
+            version.text = "[ {ENVIRONMENT} ] {APPLICATION} - version: <color=yellow>{VERSION}</color>";
+            version.text = version.text
+                .Replace(environmentKey, GBE.GetEnvironment().GetName())
+                .Replace(applicationKey, Application.productName)
+                .Replace(versionKey, Application.version);
+
+            if (Application.companyName.ToLower().Contains("lite")) Instantiate(litePrefab, transform);
+
+            AccountController.onAccountChange += LoadAccount;
+            AccountController.load();
+        }
+
+        private void InitializeMenuButtons()
+        {
+            supportButton.onClick.AddListener(() => Application.OpenURL(GBE.GetEnvironment().GetSupportLink()));
+            serverButton.onClick.AddListener(() => ChangeSceneAsync(GameScene.Servers, LoadSceneMode.Additive));
+            accountButton.onClick.AddListener(() => Log.Warn("Account Screen isn't implemented yet."));
+            legendsButton.onClick.AddListener(() => Log.Warn("Legends Screen isn't implemented yet."));
+        }
+
+        private void InitializeTopButtons()
+        {
+            loginButton.onClick.AddListener(() => OpenPopup(loginPopup));
+            registerButton.onClick.AddListener(() => OpenPopup(registerPopup));
+            logoutButton.onClick.AddListener(() => AccountController.delete());
         }
 
         private void OpenPopup(GameObject popup) =>

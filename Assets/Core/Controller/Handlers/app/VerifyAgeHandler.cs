@@ -7,7 +7,7 @@ namespace Assets.Core.Controller.Handlers.app
     {
         public VerifyAgeHandler(string guid, string password)
         {
-            request = new Request(HttpMethod.Post, "account/verifyage");
+            request = new Request(HttpMethod.Get, "account/verifyage");
             request.AddQuery("guid", guid);
             request.AddQuery("password", password);
             request.AddQuery("isAgeVerified", "1");

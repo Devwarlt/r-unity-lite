@@ -9,14 +9,14 @@ namespace Assets.Core.View.Screens
 {
     public class ServersScreen : MonoBehaviour
     {
-        public Button backButton;
+        public Button doneButton;
         public GameObject serverItemList;
         public ServerItemModel serverItemPrefab;
 
         private void Awake()
         {
-            backButton.interactable = true;
-            backButton.onClick.AddListener(() => UnloadSceneAsync(GameScene.Servers.ToSceneName()));
+            doneButton.interactable = true;
+            doneButton.onClick.AddListener(() => UnloadSceneAsync(GameScene.Servers.ToSceneName()));
 
             load();
         }

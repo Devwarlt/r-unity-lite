@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Assets.Core.Utils
 {
@@ -33,7 +34,7 @@ namespace Assets.Core.Utils
                 this.encoding = encoding;
                 this.header = header;
 
-                if (!Headers.ContainsKey(header)) throw new RequestException("GameWebMediaHeader not found in dictionary!");
+                if (!Headers.ContainsKey(header)) throw new RequestException("MediaHeader not found in dictionary!");
                 if (!method.SupportedHttpMethods()) throw new RequestException("HttpMethod not supported!");
 
                 nameValueCollection = new Dictionary<string, string>();
@@ -43,15 +44,17 @@ namespace Assets.Core.Utils
             public void AddQuery(string key, string value) =>
                 nameValueCollection.Add(key, value);
 
-            public void OnRequest()
+            public async Task<string> OnRequest()
             {
                 Log.Write("Web Request to '{0}'...", UriString());
 
-                if (method == HttpMethod.Get) HandleGetRequestAsync();
-                if (method == HttpMethod.Post) HandlePostRequestAsync();
+                if (method == HttpMethod.Get) return await HandleGetRequestAsync();
+                if (method == HttpMethod.Post) return await HandlePostRequestAsync();
+
+                return OnResponse();
             }
 
-            public string OnResponse()
+            private string OnResponse()
             {
                 if (string.IsNullOrEmpty(response))
                 {
@@ -63,16 +66,26 @@ namespace Assets.Core.Utils
                 return response;
             }
 
-            private async void HandleGetRequestAsync()
+            private async Task<string> HandleGetRequestAsync()
             {
-                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                using (new TimedProfiler(string.Format("[protocol: {0}, method: {1}] request: {2}", GBE.GetEnvironment().GetProtocol().ToString(), method.ToString(), request)))
+                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.None }))
                     response = await client.GetStringAsync(UriString() + (nameValueCollection.Count != 0 ? nameValueCollection.ToQueryStringsBuilder() : string.Empty));
+
+                OnResponse();
+
+                return response;
             }
 
-            private async void HandlePostRequestAsync()
+            private async Task<string> HandlePostRequestAsync()
             {
-                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+                using (new TimedProfiler(string.Format("[protocol: {0}, method: {1}] request: {2}", GBE.GetEnvironment().GetProtocol().ToString(), method.ToString(), request)))
+                using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.None }))
                     response = await client.PostAsync(UriString(), new FormUrlEncodedContent(nameValueCollection)).Result.Content.ReadAsStringAsync();
+
+                OnResponse();
+
+                return response;
             }
 
             private string UriString(bool hasPrefix = true) =>

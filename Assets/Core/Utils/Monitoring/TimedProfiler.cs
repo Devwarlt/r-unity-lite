@@ -22,7 +22,7 @@ namespace Assets.Core.Utils.Monitoring
             var time = timer.Elapsed;
             var ms = timer.ElapsedMilliseconds;
 
-            Log.Warn($"{message} - Elapsed: {time} ({ms}ms)");
+            Log.Warn($"{message} - elapsed: {time} ({ms}ms)");
         }
     }
 }

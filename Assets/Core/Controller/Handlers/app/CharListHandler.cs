@@ -10,14 +10,14 @@ namespace Assets.Core.Controller.Handlers.app
     {
         public CharListHandler(string guid, string password)
         {
-            request = new Request(HttpMethod.Post, "char/list");
+            request = new Request(HttpMethod.Get, "char/list");
             request.AddQuery("guid", guid);
             request.AddQuery("password", password);
         }
 
         public void load()
         {
-            var elem = XElement.Parse(request.OnResponse());
+            var elem = XElement.Parse(response);
 
             AccountController.account = new AccountModel(elem.Element("Account"));
             CharListModel.load(elem);

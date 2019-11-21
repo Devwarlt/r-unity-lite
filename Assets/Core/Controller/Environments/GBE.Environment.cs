@@ -42,8 +42,8 @@ namespace Assets.Core.Controller.Environments
                 supportLink;
 
             public string GetUriString() =>
-                string.Format("{0}://{1}:{2}",
-                    protocol.ToString().ToLower(), ipAddress, webServerPort);
+                string.Format("{0}://{1}{2}",
+                    protocol.ToString().ToLower(), ipAddress, webServerPort == 80 ? "" : $":{webServerPort}");
         }
     }
 }

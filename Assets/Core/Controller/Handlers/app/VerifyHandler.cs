@@ -7,7 +7,7 @@ namespace Assets.Core.Controller.Handlers.app
     {
         public VerifyHandler(string guid, string password)
         {
-            request = new Request(HttpMethod.Post, "account/verify");
+            request = new Request(HttpMethod.Get, "account/verify", MediaHeader.TextPlain);
             request.AddQuery("guid", guid);
             request.AddQuery("password", password);
         }

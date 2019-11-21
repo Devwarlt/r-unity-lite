@@ -1,5 +1,4 @@
 ﻿using Assets.Core.Controller;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,18 +12,24 @@ namespace Assets.Core.Model.Server
         public Button _button;
 
         [Header("Text")]
-        public TextMeshProUGUI _name;
+        public Text _name;
 
-        public TextMeshProUGUI _usage;
+        public Text _usage;
 
         [HideInInspector]
         public ServerModel data;
+
+        private bool isInitialized = false;
 
         public void init(ServerModel data)
         {
             this.data = data;
 
-            _button.onClick.AddListener(() => ServerController.setSelectedServer(data.id));
+            _button.onClick.AddListener(() =>
+            {
+                ServerController.setSelectedServer(data.id);
+                _background.SetActive(true);
+            });
 
             ServerController.onServerChange += setup;
 
@@ -36,17 +41,19 @@ namespace Assets.Core.Model.Server
             _name.text = data.name;
             _usage.text = usage();
 
-            var color = data.id == ServerController.selectedId ? (byte)255 : (byte)0;
-
-            if (_background != null) _background.GetComponent<Image>().color = new Color32(color, color, color, 100);
+            isInitialized = true;
         }
 
         private string usage()
         {
-            if (data.usage >= 1) return "<color=red>Full";
-            if (data.usage >= .66) return "<color=orange>Crowded";
+            if (data.usage >= 1) return "<color=red>Full</color>";
+            else if (data.usage >= .66) return "<color=orange>Crowded</color>";
+            else return "<color=lime>Normal</color>";
+        }
 
-            return "";
+        private void LateUpdate()
+        {
+            if (isInitialized) _background.SetActive(data.id == ServerController.selectedId);
         }
     }
 }

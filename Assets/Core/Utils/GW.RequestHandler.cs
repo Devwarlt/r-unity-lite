@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Assets.Core.Utils
+﻿namespace Assets.Core.Utils
 {
     public static partial class GW
     {
@@ -11,15 +9,8 @@ namespace Assets.Core.Utils
 
             public virtual bool SendRequest()
             {
-                request.OnRequest();
+                response = request.OnRequest().Result;
 
-                return HandleRequest();
-            }
-
-            protected virtual bool HandleRequest()
-            {
-                response = request.OnResponse();
-                Debug.LogWarning("Response from Web Request:\n" + response);
                 return !response.Contains("Error");
             }
         }
