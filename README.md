@@ -3,6 +3,9 @@
 
 R-Unity is a Unity game client for Realm of the Mad God Private Servers.
 
+## :warning: Important!
+Due possible legal issues, I decided to stop working on this project. Do not expect any further update anymore. Name and product **Realm of the Mad God** (RotMG) belongs to DECA Games and this project was designed to be an open sourced reference (for educational purposes) to PServer developers. If you want to ask or contact me, use my Discord **Devwarlt#8483** for more details. Sorry for inconvenience.
+
 ### Documentation
 See **[documentation][r-unity docs]** (incoming).
 
